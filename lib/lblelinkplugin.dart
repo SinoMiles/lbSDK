@@ -158,8 +158,9 @@ class Lblelinkplugin {
   }
 
   //播放
-  static play(String playUrlString) {
-    _channel.invokeMethod("play", {"playUrlString": playUrlString});
+  static play(String playUrlString, {String header}) {
+    _channel.invokeMethod(
+        "play", {"playUrlString": playUrlString, "header": header});
   }
 
   static Future<String> get platformVersion async {
