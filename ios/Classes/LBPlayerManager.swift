@@ -7,7 +7,7 @@ class LBPlayerManager: NSObject {
     static let shareInstance = LBPlayerManager()
     
     //开始播放
-    func beginPlay(connection: LBLelinkConnection,playUrl: String){
+    func beginPlay(connection: LBLelinkConnection,playUrl: String,header:String){
        
        self.player.lelinkConnection = connection;
        
@@ -15,10 +15,21 @@ class LBPlayerManager: NSObject {
        playItem.mediaType = .videoOnline;
        playItem.mediaURLString = playUrl
        playItem.startPosition = 0;
+       var s = convertToDictionary(text:header)
+        playItem.headerInfo=s
        self.player.play(with: playItem)
        
    }
-    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
     //暂停
     func pause(){
         self.player.pause()

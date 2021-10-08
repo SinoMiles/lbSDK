@@ -41,7 +41,7 @@ import Flutter
             LBPlayerManager.shareInstance.stop();
         break
         case "play":
-            LBPlayerManager.shareInstance.beginPlay(connection: LMLBSDKManager.shareInstance.linkConnection, playUrl: dict?["playUrlString"] ?? "");
+            LBPlayerManager.shareInstance.beginPlay(connection: LMLBSDKManager.shareInstance.linkConnection, playUrl: dict?["playUrlString"] ?? "",header: dict?["header"] ?? "");
         break
         case "getLastConnectService":
             LMLBSDKManager.shareInstance.getLastConnectService(result: result)
